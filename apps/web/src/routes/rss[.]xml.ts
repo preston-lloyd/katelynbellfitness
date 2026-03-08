@@ -1,26 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { allBlogs } from 'content-collections'
+import { fetchPosts } from '#/lib/posts'
 import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '#/lib/site'
 
 export const Route = createFileRoute('/rss.xml')({
   server: {
     handlers: {
-      GET: () => {
-        const posts = Array.from(
-          new Map(
-            [...allBlogs]
-              .sort(
-                (a, b) =>
-                  new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf(),
-              )
-              .map((post) => [post.slug, post]),
-          ).values(),
+      GET: async () => {
+        const posts = await fetchPosts()
+        const sorted = [...(posts ?? [])].sort(
+          (a, b) =>
+            new Date(b.publishedAt).valueOf() -
+            new Date(a.publishedAt).valueOf(),
         )
 
-        const items = posts
+        const items = sorted
           .map((post) => {
             const url = `${SITE_URL}/blog/${post.slug}`
-            return `<item><title><![CDATA[${post.title}]]></title><description><![CDATA[${post.description}]]></description><link>${url}</link><guid>${url}</guid><pubDate>${new Date(post.pubDate).toUTCString()}</pubDate></item>`
+            const description = post.description ?? ''
+            return `<item><title><![CDATA[${post.title}]]></title><description><![CDATA[${description}]]></description><link>${url}</link><guid>${url}</guid><pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate></item>`
           })
           .join('')
 

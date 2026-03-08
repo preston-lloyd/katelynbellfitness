@@ -6,6 +6,19 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   seo,
   social
 }`
+
+export interface SocialLink {
+  name: string
+  url: string
+}
+
+export interface SocialLinks {
+  facebook: SocialLink
+  instagram: SocialLink
+  x: SocialLink
+  youtube: SocialLink
+  tiktok: SocialLink
+}
   
 export interface SiteSettings {
   general: {
@@ -24,13 +37,7 @@ export interface SiteSettings {
     description: string
     image: string
   }
-  social: {
-    facebook: string
-    instagram: string
-    x: string
-    youtube: string
-    tiktok: string
-  }
+  social: SocialLinks
 }
 
 export async function fetchSiteSettings() {

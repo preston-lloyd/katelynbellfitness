@@ -66,22 +66,8 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'seo',
-      type: 'object',
+      type: 'seo',
       group: 'seo',
-      fields: [
-        defineField({
-          name: 'title',
-          type: 'string',
-        }),
-        defineField({
-          name: 'description',
-          type: 'text',
-        }),
-        defineField({
-          name: 'image',
-          type: 'image',
-        }),
-      ],
     }),
     defineField({
       name: 'social',

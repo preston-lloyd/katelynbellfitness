@@ -28,7 +28,8 @@ export const aboutPage = defineType({
         }),
         defineField({
           name: 'cta',
-          type: 'cta',
+          title: 'Call To Action',
+          type: 'button',
         }),
         defineField({
           name: 'testimonials',
@@ -57,22 +58,8 @@ export const aboutPage = defineType({
     }),
     defineField({
       name: 'seo',
-      type: 'object',
+      type: 'seo',
       group: 'seo',
-      fields: [
-        defineField({
-          name: 'title',
-          type: 'string',
-        }),
-        defineField({
-          name: 'description',
-          type: 'text',
-        }),
-        defineField({
-          name: 'image',
-          type: 'image',
-        }),
-      ],
     }),
   ],
 })

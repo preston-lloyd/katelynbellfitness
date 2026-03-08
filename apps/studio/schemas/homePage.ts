@@ -31,7 +31,8 @@ export const homePage = defineType({
         }),
         defineField({
           name: "cta",
-          type: "cta",
+          title: "Call To Action",
+          type: "button",
         }),
       ],
     }),
@@ -69,7 +70,8 @@ export const homePage = defineType({
         }),
         defineField({
           name: "cta",
-          type: "cta",
+          title: "Call To Action",
+          type: "button",
         }),
       ]
     }),
@@ -92,7 +94,7 @@ export const homePage = defineType({
         }),
         defineField({
           name: "cta",
-          type: "cta",
+          type: "button",
         }),
       ],
     }),
@@ -130,28 +132,15 @@ export const homePage = defineType({
         }),
         defineField({
           name: "cta",
-          type: "cta",
+          title: "Call To Action",
+          type: "button",
         }),
       ],
     }),
     defineField({
       name: "seo",
-      type: "object",
-      group: "seo",
-      fields: [
-        defineField({
-          name: "title",
-          type: "string",
-        }),
-        defineField({
-          name: "description",
-          type: "text",
-        }),
-        defineField({
-          name: "image",
-          type: "image",
-        }),
-      ],
+      type: "seo",
+      group: "seo"
     }),
   ],
 })

@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export const siteSettings = defineType({
   name: 'siteSettings',
@@ -6,6 +6,7 @@ export const siteSettings = defineType({
   type: 'document',
   groups: [
     { name: 'general', title: 'General', default: true },
+    { name: 'navigation', title: 'Navigation' },
     { name: 'seo', title: 'SEO' },
     { name: 'social', title: 'Social' },
   ],
@@ -34,6 +35,32 @@ export const siteSettings = defineType({
         defineField({
           name: 'phone',
           type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'navigation',
+      type: 'object',
+      group: 'navigation',
+      fields: [
+        defineField({
+          name: 'navigation',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'label',
+                  type: 'string',
+                }),
+                defineField({
+                  name: 'link',
+                  type: 'string',
+                }),
+              ],
+            }),
+          ],
         }),
       ],
     }),

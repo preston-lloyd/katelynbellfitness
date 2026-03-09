@@ -1,7 +1,15 @@
 import { sanityClient } from '#/lib/sanity'
 
 const siteSettingsQuery = `*[_type == "siteSettings"][0]{
-  general,
+  general{
+    title,
+    logo,
+    favicon,
+    email,
+    phone,
+    "logoUrl": logo.asset->url,
+    "faviconUrl": favicon.asset->url
+  },
   navigation,
   seo,
   social
@@ -23,15 +31,19 @@ export interface SocialLinks {
 export interface SiteSettings {
   general: {
     title: string
-    logo: string
-    favicon: string
-    email: string
-    phone: string
+    logo?: string | null
+    favicon?: string | null
+    email?: string | null
+    phone?: string | null
+    logoUrl?: string | null
+    faviconUrl?: string | null
   }
   navigation: {
-    label: string
-    link: string
-  }[]
+    navigation?: {
+      label: string
+      link: string
+    }[]
+  }
   seo: {
     title: string
     description: string
@@ -42,5 +54,6 @@ export interface SiteSettings {
 
 export async function fetchSiteSettings() {
   const result = await sanityClient.fetch(siteSettingsQuery)
+
   return result ?? null
 }

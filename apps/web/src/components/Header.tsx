@@ -22,7 +22,7 @@ export default function Header({ settings }: HeaderProps) {
         </h2>
 
         <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0">
-          {settings?.navigation.map(navItem => (
+          {settings?.navigation?.navigation?.map((navItem: { label: string; link: string }) => (
             <Link
               to={navItem.link}
               className="nav-link"

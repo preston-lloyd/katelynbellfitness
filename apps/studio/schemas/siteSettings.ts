@@ -97,4 +97,9 @@ export const siteSettings = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'general.title',
+    },
+  },
 })

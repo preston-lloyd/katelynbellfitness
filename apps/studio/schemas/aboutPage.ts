@@ -62,4 +62,9 @@ export const aboutPage = defineType({
       group: 'seo',
     }),
   ],
+  preview: {
+    select: {
+      title: 'general.title',
+    },
+  },
 })

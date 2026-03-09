@@ -47,4 +47,9 @@ export const faqsPage = defineType({
       group: 'seo',
     }),
   ],
+  preview: {
+    select: {
+      title: 'general.title',
+    },
+  },
 })

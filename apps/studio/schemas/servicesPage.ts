@@ -69,4 +69,9 @@ export const servicesPage = defineType({
       group: 'seo'
     }),
   ],
+  preview: {
+    select: {
+      title: 'general.title',
+    },
+  },
 })

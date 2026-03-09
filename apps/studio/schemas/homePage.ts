@@ -143,4 +143,9 @@ export const homePage = defineType({
       group: "seo"
     }),
   ],
+  preview: {
+    select: {
+      title: "hero.title",
+    }
+  }
 })

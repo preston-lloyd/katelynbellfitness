@@ -1,0 +1,271 @@
+/*
+ * Design Tokens — Katelyn Bell Fitness
+ *
+ * Extracted from reference: bold fitness aesthetic, warm cream base,
+ * coral/orange primary, deep teal secondary, punchy accent palette.
+ *
+ * Usage: var(--color-primary), var(--text-display), etc.
+ * Tailwind utilities come from @theme in styles.css.
+ */
+
+/* ─── Primitive palette (raw values, not for direct use in components) ─── */
+
+:root {
+  --_coral-500: #f0522c;
+  --_coral-600: #d0431e;
+  --_coral-400: #ff7350;
+  --_coral-100: #fde9e3;
+
+  --_teal-900: #0c5045;
+  --_teal-800: #1a6b58;
+  --_teal-100: #d6f0ea;
+
+  --_cream-50:  #fdfaf6;
+  --_cream-100: #f9f6f1;
+  --_cream-200: #f2ede6;
+  --_cream-300: #e8e0d5;
+
+  --_yellow-400: #f7c93e;
+  --_yellow-100: rgba(247, 201, 62, 0.15);
+
+  --_blue-400: #3bbce0;
+  --_blue-100: rgba(59, 188, 224, 0.15);
+
+  --_purple-400: #9878d6;
+  --_purple-100: rgba(152, 120, 214, 0.15);
+
+  --_black: #111111;
+  --_white: #ffffff;
+}
+
+/* ─── Semantic color tokens ─── */
+
+:root {
+  /* Brand */
+  --color-primary:        var(--_coral-500);
+  --color-primary-dark:   var(--_coral-600);
+  --color-primary-light:  var(--_coral-400);
+  --color-primary-subtle: var(--_coral-100);
+
+  --color-secondary:       var(--_teal-900);
+  --color-secondary-muted: var(--_teal-800);
+  --color-secondary-subtle: var(--_teal-100);
+
+  /* Backgrounds */
+  --color-bg:             var(--_cream-100);
+  --color-bg-alt:         var(--_cream-200);
+  --color-bg-inverse:     var(--_teal-900);
+
+  /* Surfaces (cards, panels) */
+  --color-surface:        var(--_white);
+  --color-surface-muted:  var(--_cream-50);
+  --color-surface-raised: var(--_white);
+
+  /* Text */
+  --color-text:           var(--_black);
+  --color-text-muted:     #5a5a5a;
+  --color-text-soft:      #9a9a9a;
+  --color-text-on-primary: var(--_white);
+  --color-text-on-secondary: var(--_white);
+  --color-text-on-dark:   var(--_cream-50);
+
+  /* Accents (category chips, highlights, decorative pops) */
+  --color-accent-yellow:    var(--_yellow-400);
+  --color-accent-yellow-bg: var(--_yellow-100);
+  --color-accent-blue:      var(--_blue-400);
+  --color-accent-blue-bg:   var(--_blue-100);
+  --color-accent-purple:    var(--_purple-400);
+  --color-accent-purple-bg: var(--_purple-100);
+
+  /* Borders & dividers */
+  --color-border:       rgba(17, 17, 17, 0.08);
+  --color-border-strong: rgba(17, 17, 17, 0.18);
+  --color-border-focus: var(--_coral-500);
+}
+
+/* ─── Typography ─── */
+
+:root {
+  --font-heading: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Display scale (clamp: mobile → desktop) */
+  --text-display-2xl: clamp(3.5rem,  7vw + 1rem,  6.5rem);
+  --text-display-xl:  clamp(3rem,    5.5vw + 0.5rem, 5.25rem);
+  --text-display-lg:  clamp(2.5rem,  4vw + 0.5rem,  4rem);
+
+  /* Heading scale */
+  --text-h1: clamp(2rem,    3.5vw + 0.25rem, 3.25rem);
+  --text-h2: clamp(1.625rem, 2.5vw + 0.25rem, 2.5rem);
+  --text-h3: clamp(1.25rem, 1.5vw + 0.25rem, 1.75rem);
+  --text-h4: clamp(1.0625rem, 1vw + 0.125rem, 1.25rem);
+
+  /* Body scale */
+  --text-body-lg: 1.125rem;
+  --text-body:    1rem;
+  --text-sm:      0.875rem;
+  --text-xs:      0.75rem;
+
+  /* Line heights */
+  --leading-tight:   1.08;
+  --leading-snug:    1.22;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.72;
+
+  /* Font weights */
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.03em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-widest:  0.14em;
+}
+
+/* ─── Spacing rhythm ─── */
+
+:root {
+  /* Section-level vertical breathing room */
+  --space-section-y:   clamp(4.5rem, 9vw, 8rem);
+  --space-section-y-sm: clamp(3rem,   6vw, 5rem);
+
+  /* Horizontal page gutters */
+  --space-page-x: clamp(1.25rem, 5vw, 5rem);
+
+  /* Content gaps */
+  --space-gap-2xs: 0.5rem;
+  --space-gap-xs:  0.75rem;
+  --space-gap-sm:  1rem;
+  --space-gap-md:  1.5rem;
+  --space-gap-lg:  2rem;
+  --space-gap-xl:  3rem;
+  --space-gap-2xl: 4.5rem;
+
+  /* Max content width */
+  --layout-content-max: 1120px;
+  --layout-prose-max:   720px;
+}
+
+/* ─── Border radius ─── */
+
+:root {
+  --radius-xs:   6px;
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   36px;
+  --radius-2xl:  48px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+}
+
+/* ─── Shadows ─── */
+
+:root {
+  --shadow-xs:    0 1px 4px rgba(17, 17, 17, 0.05);
+  --shadow-sm:    0 2px 10px rgba(17, 17, 17, 0.07);
+  --shadow-card:  0 4px 28px rgba(17, 17, 17, 0.08), 0 1px 4px rgba(17, 17, 17, 0.04);
+  --shadow-card-hover: 0 8px 44px rgba(17, 17, 17, 0.13), 0 2px 8px rgba(17, 17, 17, 0.06);
+  --shadow-lg:    0 16px 64px rgba(17, 17, 17, 0.12), 0 4px 16px rgba(17, 17, 17, 0.06);
+  --shadow-primary-glow: 0 6px 24px rgba(240, 82, 44, 0.38);
+  --shadow-secondary-glow: 0 6px 24px rgba(12, 80, 69, 0.3);
+}
+
+/* ─── Motion ─── */
+
+:root {
+  --duration-fast:   120ms;
+  --duration-base:   200ms;
+  --duration-slow:   350ms;
+  --duration-enter:  500ms;
+
+  --ease-out:    cubic-bezier(0.2, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --transition-colors: color var(--duration-base) var(--ease-out),
+                       background-color var(--duration-base) var(--ease-out),
+                       border-color var(--duration-base) var(--ease-out);
+  --transition-transform: transform var(--duration-base) var(--ease-out);
+  --transition-all:    all var(--duration-base) var(--ease-out);
+}
+
+/* ─── Z-index scale ─── */
+
+:root {
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   10;
+  --z-sticky:   50;
+  --z-overlay:  100;
+  --z-modal:    200;
+  --z-toast:    300;
+}
+
+/* ─── Dark mode overrides ─── */
+
+:root[data-theme="dark"] {
+  --color-bg:             #0e0f0d;
+  --color-bg-alt:         #161714;
+  --color-bg-inverse:     var(--_cream-100);
+
+  --color-surface:        #1a1c19;
+  --color-surface-muted:  #141612;
+  --color-surface-raised: #222420;
+
+  --color-text:           #f0ede8;
+  --color-text-muted:     #a8a49e;
+  --color-text-soft:      #6a6762;
+  --color-text-on-dark:   #f0ede8;
+
+  --color-primary:        var(--_coral-400);
+  --color-primary-dark:   var(--_coral-500);
+  --color-primary-subtle: rgba(240, 82, 44, 0.12);
+
+  --color-secondary:        var(--_teal-100);
+  --color-secondary-muted:  #4db89c;
+  --color-secondary-subtle: rgba(12, 80, 69, 0.2);
+
+  --color-border:        rgba(240, 237, 232, 0.08);
+  --color-border-strong: rgba(240, 237, 232, 0.16);
+
+  --shadow-card:         0 4px 28px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover:   0 8px 44px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-primary-glow: 0 6px 24px rgba(255, 115, 80, 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg:             #0e0f0d;
+    --color-bg-alt:         #161714;
+    --color-bg-inverse:     var(--_cream-100);
+
+    --color-surface:        #1a1c19;
+    --color-surface-muted:  #141612;
+    --color-surface-raised: #222420;
+
+    --color-text:           #f0ede8;
+    --color-text-muted:     #a8a49e;
+    --color-text-soft:      #6a6762;
+    --color-text-on-dark:   #f0ede8;
+
+    --color-primary:        var(--_coral-400);
+    --color-primary-dark:   var(--_coral-500);
+    --color-primary-subtle: rgba(240, 82, 44, 0.12);
+
+    --color-secondary:        var(--_teal-100);
+    --color-secondary-muted:  #4db89c;
+    --color-secondary-subtle: rgba(12, 80, 69, 0.2);
+
+    --color-border:        rgba(240, 237, 232, 0.08);
+    --color-border-strong: rgba(240, 237, 232, 0.16);
+
+    --shadow-card:         0 4px 28px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover:   0 8px 44px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-primary-glow: 0 6px 24px rgba(255, 115, 80, 0.28);
+  }
+}

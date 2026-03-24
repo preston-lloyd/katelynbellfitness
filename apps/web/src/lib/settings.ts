@@ -10,7 +10,13 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
     "logoUrl": logo.asset->url,
     "faviconUrl": favicon.asset->url
   },
-  navigation,
+  navigation{
+    navigation[]{
+      _key,
+      label,
+      link
+    }
+  },
   seo,
   social
 }`
@@ -40,6 +46,7 @@ export interface SiteSettings {
   }
   navigation: {
     navigation?: {
+      _key: string
       label: string
       link: string
     }[]

@@ -1,38 +1,148 @@
+import { useState, useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
+import { Menu, X } from 'lucide-react'
 import type { SiteSettings } from '#/lib/settings'
 
-type HeaderProps = {
-  settings?: SiteSettings | null
-}
+const NAV_LINKS = [
+  { label: 'Home',         to: '/',             exact: true  },
+  { label: 'About',        to: '/about',        exact: false },
+  { label: 'Services',     to: '/services',     exact: false },
+  { label: 'Testimonials', to: '/testimonials', exact: false },
+  { label: 'Contact',      to: '/contact',      exact: false },
+] as const
 
-export default function Header({ settings }: HeaderProps) {
-  const siteTitle = settings?.general?.title
+export default function Header({ settings }: { settings?: SiteSettings | null }) {
+  const siteName = settings?.general?.title ?? 'Katelyn Bell Fitness'
+  const [open, setOpen] = useState(false)
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
-      <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
-        <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm text-[var(--sea-ink)] no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
-          >
-            <span className="h-2 w-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
-            {siteTitle}
-          </Link>
-        </h2>
+    <header
+      className="sticky top-0 z-50 border-b backdrop-blur-md"
+      style={{
+        background: 'color-mix(in oklch, var(--color-bg) 90%, transparent)',
+        borderColor: 'var(--color-border)',
+      }}
+    >
+      <div className="page-wrap flex items-center justify-between py-3.5 sm:py-4">
 
-        <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0">
-          {settings?.navigation?.navigation?.map((navItem: { label: string; link: string }) => (
+        {/* ── Logo ── */}
+        <Link
+          to="/"
+          className="flex items-center gap-2.5 no-underline"
+          onClick={() => setOpen(false)}
+        >
+          <span
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[11px] font-extrabold text-white"
+            style={{ background: 'var(--color-primary)', fontFamily: 'var(--font-heading)' }}
+            aria-hidden="true"
+          >
+            KB
+          </span>
+          <span
+            className="hidden text-[15px] font-extrabold leading-none tracking-tight sm:block"
+            style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}
+          >
+            {siteName}
+          </span>
+        </Link>
+
+        {/* ── Desktop nav ── */}
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
+          {NAV_LINKS.map(({ label, to, exact }) => (
             <Link
-              to={navItem.link}
+              key={to}
+              to={to}
               className="nav-link"
               activeProps={{ className: 'nav-link is-active' }}
+              activeOptions={{ exact }}
             >
-              {navItem.label}
+              {label}
             </Link>
           ))}
+        </nav>
+
+        {/* ── CTA + hamburger ── */}
+        <div className="flex items-center gap-2">
+          <Link
+            to="/consultation"
+            className="btn-primary hidden text-sm md:inline-flex"
+          >
+            Book a Call
+          </Link>
+
+          <button
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-primary)] focus-visible:outline-offset-2 md:hidden"
+            style={{
+              borderColor: 'var(--color-border)',
+              color: 'var(--color-text)',
+            }}
+          >
+            {open
+              ? <X size={18} strokeWidth={2} />
+              : <Menu size={18} strokeWidth={2} />
+            }
+          </button>
         </div>
-      </nav>
+      </div>
+
+      {/* ── Mobile menu (smooth height animation via grid trick) ── */}
+      <div
+        id="mobile-nav"
+        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out md:hidden ${open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+        aria-hidden={!open}
+      >
+        <div className="overflow-hidden">
+          <nav
+            aria-label="Mobile navigation"
+            className="page-wrap flex flex-col gap-0.5 pb-5 pt-1"
+          >
+            {NAV_LINKS.map(({ label, to, exact }) => (
+              <Link
+                key={to}
+                to={to}
+                className="rounded-lg px-3 py-2.5 text-sm font-medium no-underline transition-colors"
+                style={{ color: 'var(--color-text-muted)' }}
+                activeProps={{
+                  className: 'rounded-lg px-3 py-2.5 text-sm font-semibold no-underline',
+                  style: {
+                    color: 'var(--color-primary)',
+                    background: 'var(--color-primary-subtle)',
+                  },
+                }}
+                activeOptions={{ exact }}
+                onClick={() => setOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+
+            <div className="mt-3 border-t pt-4" style={{ borderColor: 'var(--color-border)' }}>
+              <Link
+                to="/consultation"
+                className="btn-primary w-full justify-center"
+                onClick={() => setOpen(false)}
+              >
+                Book a Call
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
   )
 }

@@ -5,101 +5,121 @@ export const siteSettings = defineType({
   title: 'Site Settings',
   type: 'document',
   groups: [
-    { name: 'general', title: 'General', default: true },
+    { name: 'general',    title: 'General',    default: true },
     { name: 'navigation', title: 'Navigation' },
-    { name: 'seo', title: 'SEO' },
-    { name: 'social', title: 'Social' },
+    { name: 'social',     title: 'Social'     },
+    { name: 'seo',        title: 'SEO'        },
   ],
   fields: [
+
+    // ─── General ─────────────────────────────────────────────────────────────
     defineField({
       name: 'general',
+      title: 'General',
       type: 'object',
       group: 'general',
       fields: [
-        defineField({
-          name: 'title',
-          type: 'string',
-        }),
-        defineField({
-          name: 'logo',
-          type: 'image',
-        }),
-        defineField({
-          name: 'favicon',
-          type: 'image',
-        }),
-        defineField({
-          name: 'email',
-          type: 'string',
-        }),
-        defineField({
-          name: 'phone',
-          type: 'string',
-        }),
+        defineField({ name: 'title', title: 'Site Title', type: 'string' }),
+        defineField({ name: 'logo',    title: 'Logo',    type: 'image' }),
+        defineField({ name: 'favicon', title: 'Favicon', type: 'image' }),
+        defineField({ name: 'email',   title: 'Contact Email', type: 'string' }),
+        defineField({ name: 'phone',   title: 'Phone',         type: 'string' }),
       ],
     }),
+
+    // ─── Navigation ──────────────────────────────────────────────────────────
     defineField({
       name: 'navigation',
+      title: 'Navigation',
       type: 'object',
       group: 'navigation',
       fields: [
         defineField({
           name: 'navigation',
+          title: 'Nav Links',
           type: 'array',
           of: [
             defineArrayMember({
               type: 'object',
               fields: [
-                defineField({
-                  name: 'label',
-                  type: 'string',
-                }),
-                defineField({
-                  name: 'link',
-                  type: 'string',
-                }),
+                defineField({ name: 'label', title: 'Label', type: 'string' }),
+                defineField({ name: 'link',  title: 'Path',  type: 'string' }),
               ],
             }),
           ],
         }),
       ],
     }),
-    defineField({
-      name: 'seo',
-      type: 'seo',
-      group: 'seo',
-    }),
+
+    // ─── Social ───────────────────────────────────────────────────────────────
+    // Each social link is an object { name, url } to match the web SocialLink type.
     defineField({
       name: 'social',
+      title: 'Social Links',
       type: 'object',
       group: 'social',
       fields: [
         defineField({
-          name: 'facebook',
-          type: 'string',
-        }),
-        defineField({
           name: 'instagram',
-          type: 'string',
+          title: 'Instagram',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Display Name', type: 'string' }),
+            defineField({ name: 'url',  title: 'Profile URL',  type: 'url'    }),
+          ],
         }),
         defineField({
-          name: 'x',
-          type: 'string',
-        }),
-        defineField({
-          name: 'youtube',
-          type: 'string',
+          name: 'facebook',
+          title: 'Facebook',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Display Name', type: 'string' }),
+            defineField({ name: 'url',  title: 'Profile URL',  type: 'url'    }),
+          ],
         }),
         defineField({
           name: 'tiktok',
-          type: 'string',
+          title: 'TikTok',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Display Name', type: 'string' }),
+            defineField({ name: 'url',  title: 'Profile URL',  type: 'url'    }),
+          ],
+        }),
+        defineField({
+          name: 'youtube',
+          title: 'YouTube',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Display Name', type: 'string' }),
+            defineField({ name: 'url',  title: 'Profile URL',  type: 'url'    }),
+          ],
+        }),
+        defineField({
+          name: 'x',
+          title: 'X (Twitter)',
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Display Name', type: 'string' }),
+            defineField({ name: 'url',  title: 'Profile URL',  type: 'url'    }),
+          ],
         }),
       ],
     }),
+
+    // ─── SEO ─────────────────────────────────────────────────────────────────
+    defineField({
+      name: 'seo',
+      title: 'Default SEO',
+      type: 'seo',
+      group: 'seo',
+    }),
   ],
+
   preview: {
-    select: {
-      title: 'general.title',
+    select: { title: 'general.title' },
+    prepare({ title }) {
+      return { title: title ?? 'Site Settings' }
     },
   },
 })

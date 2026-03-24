@@ -1,10 +1,6 @@
-import { siteSettings } from './siteSettings'
 import { homePage } from './homePage'
-import { aboutPage } from './aboutPage'
-import { servicesPage } from './servicesPage'
-import { faqsPage } from './faqsPage'
-import { postType } from './post'
-import { button } from './button'
+import { siteSettings } from './siteSettings'
 import { seo } from './seo'
+import { postType } from './post'
 
-export const schemaTypes = [siteSettings, homePage, aboutPage, servicesPage, faqsPage, postType, button, seo]
+export const schemaTypes = [homePage, siteSettings, seo, postType]

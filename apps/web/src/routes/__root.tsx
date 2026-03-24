@@ -10,17 +10,17 @@ import appCss from '../styles.css?url'
 function NotFoundPage() {
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
-      <section className="island-shell rounded-2xl p-8 text-center">
-        <h1 className="display-title mb-3 text-3xl font-bold text-[var(--sea-ink)]">
+      <section className="island-shell p-8 text-center">
+        <h1
+          className="section-heading mb-3 text-3xl"
+          style={{ color: 'var(--color-text)' }}
+        >
           Page not found
         </h1>
-        <p className="mb-6 text-[var(--sea-ink-soft)]">
+        <p className="mb-6 text-sm" style={{ color: 'var(--color-text-muted)' }}>
           The page you’re looking for doesn’t exist or has been moved.
         </p>
-        <Link
-          to="/"
-          className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
-        >
+        <Link to="/" className="btn-secondary">
           Back to home
         </Link>
       </section>
@@ -62,7 +62,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[var(--color-primary-subtle)] selection:text-[var(--color-primary-dark)]">
         <Header settings={siteSettings} />
         {children}
         <Footer settings={siteSettings} />

@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+# TODO: Replace with your confirmed production domain
+Sitemap: https://www.katelynbellfitness.com/sitemap.xml

@@ -43,7 +43,12 @@ export const homePageQuery = `*[_type == "homePage"][0]{
     subheadline,
     bookingLink
   },
-  seo
+  seo{
+    title,
+    description,
+    "imageUrl": image.asset->url,
+    noIndex
+  }
 }`
 
 export interface ServiceItem {
@@ -96,7 +101,7 @@ export interface HomePage {
   seo?: {
     title?: string
     description?: string
-    image?: unknown
+    imageUrl?: string | null
     noIndex?: boolean
   }
 }

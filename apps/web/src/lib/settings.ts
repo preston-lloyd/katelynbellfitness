@@ -17,7 +17,12 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
       link
     }
   },
-  seo,
+  seo{
+    title,
+    description,
+    "imageUrl": image.asset->url,
+    noIndex
+  },
   social
 }`
 
@@ -51,10 +56,11 @@ export interface SiteSettings {
       link: string
     }[]
   }
-  seo: {
-    title: string
-    description: string
-    image: string
+  seo?: {
+    title?: string
+    description?: string
+    imageUrl?: string | null
+    noIndex?: boolean
   }
   social: SocialLinks
 }

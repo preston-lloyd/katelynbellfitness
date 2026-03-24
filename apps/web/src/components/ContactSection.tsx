@@ -16,7 +16,7 @@ const CONTACT_ITEMS = [
   {
     icon: MapPin,
     label: 'Based in',
-    value: 'Nashville, TN',
+    value: 'Springville, UT',
     href: null,
   },
 ] as const

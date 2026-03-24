@@ -234,7 +234,7 @@ export default function AboutSection({ data }: { data?: HomePage['about'] | null
                 <>
                   <p className="m-0">
                     Hi, I&apos;m Katelyn — a certified personal trainer and nutrition coach based in
-                    Nashville, TN. I&apos;ve spent the last five years helping women of all fitness
+                    Springville, UT. I&apos;ve spent the last five years helping women of all fitness
                     levels build sustainable habits, get stronger, and feel genuinely confident in
                     their bodies.
                   </p>

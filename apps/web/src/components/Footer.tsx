@@ -181,7 +181,7 @@ export default function Footer({ settings }: { settings?: SiteSettings | null })
           </p>
           <p className="m-0">
             Built with care in{' '}
-            <span style={{ color: 'var(--color-text-muted)' }}>Nashville, TN</span>
+            <span style={{ color: 'var(--color-text-muted)' }}>Springville, UT</span>
           </p>
         </div>
       </div>
